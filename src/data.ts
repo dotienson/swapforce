@@ -169,245 +169,254 @@ export interface FoodItem {
 }
 
 export const FOOD_DATABASE: FoodItem[] = [
+  // Category 1: Snack Giòn / Mặn
   {
     id: 'f1',
     name: 'Khoai tây chiên / Bim bim',
-    group: 'Snack giòn/mặn',
+    group: 'Snack Giòn / Mặn',
     vibe: 'Giòn',
     tags: ['Giòn'],
-    easyWin: { text: 'Bỏng ngô không bơ (ít muối)', tags: ['HB', 'EH'] },
-    smartUpgrade: { text: 'Đậu gà rang giòn (ít muối)', tags: ['HG', 'HB'], calorieReduction: 'Giảm ~ 150 - 200 kcal' },
-    planB: { text: 'Vẫn ăn khoai chiên nhưng đổ ra chén nhỏ + thêm dưa leo/cà rốt que', tags: ['HB'] }
+    easyWin: { text: 'Bỏng ngô nổ khí (Air-popped): Thể tích cực lớn, rắc xíu bột phô mai mặn.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Đậu gà/Đậu lăng nướng gia vị: Rất giòn, nhai lâu, giàu chất xơ đặc.', tags: ['HG'], calorieReduction: 'Ít calo, tối ưu no lâu' },
+    planB: { text: 'Đổ 1 phần nhỏ ra chén + ăn kèm dưa leo/cà rốt que.', tags: ['HB'] }
   },
   {
     id: 'f2',
     name: 'Gà rán',
-    group: 'Snack giòn/mặn',
+    group: 'Snack Giòn / Mặn',
     vibe: 'Giòn/Nóng',
     tags: ['Giòn', 'Nóng'],
-    easyWin: { text: 'Gà rán + thêm salad/rau/canh', tags: ['HB'] },
-    smartUpgrade: { text: 'Gà nướng/áp chảo + salad', tags: ['HG', 'SB'], calorieReduction: 'Giảm ~ 250 - 350 kcal' },
-    planB: { text: 'Phần nhỏ + nước không đường', tags: ['EH'] }
+    easyWin: { text: 'Nấm đùi gà xé tẩm bột chiên NCKD: Dai, giòn, nóng hổi, cực ít calo.', tags: ['HB'] },
+    smartUpgrade: { text: 'Ức gà tẩm yến mạch nướng NCKD: Lớp vỏ nướng giòn, nạc đạm no lâu.', tags: ['HG', 'SB'] },
+    planB: { text: 'Lột vỏ chiên, chọn phần ức/thịt nạc trắng.', tags: ['EH'] }
   },
   {
     id: 'f3',
     name: 'Nem chua rán',
-    group: 'Snack giòn/mặn',
+    group: 'Snack Giòn / Mặn',
     vibe: 'Giòn',
     tags: ['Giòn'],
-    easyWin: { text: 'Chia phần + ăn kèm dưa leo/rau sống', tags: ['HB'] },
-    smartUpgrade: { text: 'Trứng luộc + rau củ que + chấm sữa chua', tags: ['HG'], calorieReduction: 'Giảm ~ 200 kcal' },
-    planB: { text: 'Chọn 1 xiên + thêm 1 ly nước lọc trước khi ăn', tags: ['EH'] }
+    easyWin: { text: 'Chả ức gà bọc cốm nướng NCKD: Giữ được độ giòn rụm bên ngoài.', tags: ['HB'] },
+    smartUpgrade: { text: 'Đậu hũ non tẩm bột mỏng nướng: Mềm trong, giòn ngoài, chấm tương ớt.', tags: ['HG'] },
+    planB: { text: 'Giới hạn 2 xiên, uống 300ml nước ấm trước khi ăn.', tags: ['EH'] }
   },
   {
     id: 'f4',
     name: 'Bánh tráng trộn',
-    group: 'Snack giòn/mặn',
-    vibe: 'Dai/mặn/cay',
+    group: 'Snack Giòn / Mặn',
+    vibe: 'Dai/Mặn/Cay',
     tags: ['Dai'],
-    easyWin: { text: '"Bánh tráng trộn phiên bản nhỏ" + thêm xoài/rau răm nhiều hơn', tags: ['EH'] },
-    smartUpgrade: { text: 'Gỏi cuốn (tôm/thịt nạc) - chấm vừa', tags: ['HG'], calorieReduction: 'Giảm ~ 100 - 150 kcal' },
-    planB: { text: 'Ăn chậm + để ly nước bên cạnh, ngừng 60 giây giữa chừng', tags: ['EH'] }
+    easyWin: { text: 'Nộm đu đủ bò khô: Tăng gấp đôi đu đủ xanh (để nhai kỹ), giảm bò khô.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Miến dong trộn chua cay, ức gà xé: Sợi miến dai như bánh tráng, ít tải đường huyết.', tags: ['HG'] },
+    planB: { text: 'Ăn chậm, để ly nước bên cạnh, ngừng 60s giữa chừng.', tags: ['EH'] }
   },
+
+  // Category 2: Đồ Uống
   {
     id: 'f5',
     name: 'Trà sữa trân châu',
-    group: 'Đồ uống ngọt',
+    group: 'Đồ Uống (Liquid Calories)',
     vibe: 'Ngọt/Dai',
     tags: ['Ngọt', 'Dai', 'Uống'],
-    easyWin: { text: '30–50% đường + half topping', tags: ['EH'] },
-    smartUpgrade: { text: 'Sữa chua Hy Lạp + sương sáo + trái cây ít ngọt', tags: ['HG', 'EH'], calorieReduction: 'Giảm ~ 250 - 350 kcal' },
-    planB: { text: 'Nước có ga không đường + 1 phần trái cây (nhỏ)', tags: ['EH'] }
+    easyWin: { text: 'Hồng trà không đường + Topping nha đam: Mát, giòn sần sật, giải buồn miệng.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Trà sữa hạt (hạnh nhân) + Hạt chia ngâm nở: Độ sệt và dai tương tự trân châu.', tags: ['HG'] },
+    planB: { text: 'Mua size S, 30% đường, nhiều đá, uống chậm.', tags: ['EH'] }
   },
   {
     id: 'f6',
     name: 'Nước ngọt có đường',
-    group: 'Đồ uống ngọt',
+    group: 'Đồ Uống (Liquid Calories)',
     vibe: 'Ngọt',
     tags: ['Ngọt', 'Uống'],
-    easyWin: { text: 'Đổi sang size nhỏ - đá nhiều', tags: ['EH'] },
-    smartUpgrade: { text: 'Nước ngọt không đường/trà trái cây không đường', tags: ['EH'], calorieReduction: 'Giảm ~ 150 - 200 kcal' },
-    planB: { text: 'Uống nước lọc trước, rồi uống 1/2 lon', tags: ['HB', 'EH'] }
+    easyWin: { text: 'Nước khoáng có ga (Sparkling water) + Chanh tươi: Thỏa mãn cơn thèm bọt khí.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Kombucha ít đường: Ga tự nhiên, vị chua ngọt, tốt cho ruột.', tags: ['HG'] },
+    planB: { text: 'Rót ra 1/2 lon vào ly đầy đá, pha loãng uống dần.', tags: ['HB', 'EH'] }
   },
   {
     id: 'f7',
     name: 'Cà phê sữa / Bạc xỉu',
-    group: 'Đồ uống ngọt',
+    group: 'Đồ Uống (Liquid Calories)',
     vibe: 'Ngọt/Béo',
     tags: ['Ngọt', 'Uống'],
-    easyWin: { text: 'Giảm sữa/giảm đường', tags: ['EH'] },
-    smartUpgrade: { text: 'Cà phê đen + sữa ít béo hoặc sữa không đường', tags: ['SB', 'HG'], calorieReduction: 'Giảm ~ 80 - 120 kcal' },
-    planB: { text: 'Giữ món nhưng kèm 1 món "no lâu" nhỏ (trứng luộc)', tags: ['HG'] }
+    easyWin: { text: 'Cà phê đen + Đường ăn kiêng (Stevia): Vẫn ngọt mà xén hẳn calo.', tags: ['HB', 'SB'] },
+    smartUpgrade: { text: 'Cà phê + Sữa tươi tách béo (Skim milk) / Sữa hạt macca.', tags: ['HG', 'SB'] },
+    planB: { text: 'Một nửa lượng bột canh sữa đặc bình thường, thêm đậm cà phê.', tags: ['EH'] }
   },
   {
     id: 'f8',
-    name: 'Nước ép',
-    group: 'Đồ uống ngọt',
+    name: 'Nước ép trái cây',
+    group: 'Đồ Uống (Liquid Calories)',
     vibe: 'Ngọt',
     tags: ['Ngọt', 'Uống'],
-    easyWin: { text: 'Ít đường - không sữa đặc', tags: ['EH'] },
-    smartUpgrade: { text: 'Sinh tố xay nguyên quả + sữa chua (tăng đạm/xơ)', tags: ['HG'], calorieReduction: 'Giữ kcal nhưng giảm đường máu rác' },
-    planB: { text: 'Uống - ăn kèm 1 nắm hạt nhỏ', tags: ['HG'] }
+    easyWin: { text: 'Nước Detox ngâm trái cây (Infused water): Lấy hương vị thơm ngọt.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Sinh tố nguyên xác (Smoothie): Xay bã trái cây + rau bina/cần tây (chất xơ cản hấp thu đường).', tags: ['HG'] },
+    planB: { text: 'Chỉ ép nửa cốc bưởi/cam chua, không pha đường.', tags: ['HG'] }
   },
+
+  // Category 3: Món Ngọt Tráng Miệng
   {
     id: 'f9',
-    name: 'Kem',
-    group: 'Món ngọt tráng miệng',
+    name: 'Kem (Ice cream)',
+    group: 'Món Ngọt (Giải quyết Emotional Eating)',
     vibe: 'Béo/Mềm/Lạnh',
     tags: ['Ngọt'],
-    easyWin: { text: 'Chọn 1 viên nhỏ', tags: ['EH'] },
-    smartUpgrade: { text: 'Sữa chua Hy Lạp để lạnh + quả mọng', tags: ['HG'], calorieReduction: 'Giảm ~ 150 - 250 kcal' },
-    planB: { text: 'Kem + thêm trái cây (tăng khối lượng, giảm "ăn thêm")', tags: ['HB'] }
+    easyWin: { text: 'Đá bào trái cây (Sorbet) tự làm: Dưa hấu xay nhuyễn đông lạnh.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Sữa chua Hy Lạp trộn quả mọng để ngăn đá: Đặc, chua ngọt, giàu casein.', tags: ['HG'] },
+    planB: { text: 'Chỉ chọn 1-2 viên kem mini sau bữa chính.', tags: ['HB'] }
   },
   {
     id: 'f10',
     name: 'Chè',
-    group: 'Món ngọt tráng miệng',
+    group: 'Món Ngọt (Giải quyết Emotional Eating)',
     vibe: 'Ngọt',
     tags: ['Ngọt'],
-    easyWin: { text: 'Xin ít nước cốt dừa/ít đường', tags: ['EH'] },
-    smartUpgrade: { text: 'Chè ít đường + thêm đậu dồi dào chất xơ', tags: ['HG'], calorieReduction: 'Giảm ~ 100 - 150 kcal' },
-    planB: { text: 'Chia đôi phần với bạn', tags: ['HB', 'EH'] }
+    easyWin: { text: 'Thạch sương sáo + xíu nước cốt dừa loãng: Mát mịn thanh nhẹ.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Chè đỗ đen/đỗ đỏ nấu bằng đường la hán quả (không dùng đường kính).', tags: ['HG'] },
+    planB: { text: 'Ăn chè ít đá, chắt bỏ bớt nửa lượng nước cốt đường.', tags: ['EH'] }
   },
   {
     id: 'f11',
     name: 'Bánh ngọt',
-    group: 'Món ngọt tráng miệng',
+    group: 'Món Ngọt (Giải quyết Emotional Eating)',
     vibe: 'Ngọt/Béo',
     tags: ['Ngọt'],
-    easyWin: { text: 'Chọn phần nhỏ', tags: ['EH'] },
-    smartUpgrade: { text: 'Bánh nguyên cám ít ngọt + ly sữa không đường', tags: ['HG'], calorieReduction: 'Giảm ~ 150 - 200 kcal' },
-    planB: { text: 'Ăn sau bữa chính (không ăn lúc đói)', tags: ['HG', 'EH'] }
+    easyWin: { text: 'Bánh gạo lứt nổ vị socola: Nhẹ, xốp, nhai vui miệng.', tags: ['HB'] },
+    smartUpgrade: { text: 'Biscotti nguyên cám / Bánh chuối yến mạch: Độ ngọt tự nhiên từ chuối dẻo.', tags: ['HG'] },
+    planB: { text: 'Cắt lại 1 lát thật mỏng, ngậm từ từ để thỏa mãn.', tags: ['HG', 'EH'] }
   },
+
+  // Category 4: Bữa Chính
   {
     id: 'f12',
     name: 'Cơm tấm sườn bì chả',
-    group: 'Cơm - món Việt',
-    vibe: 'Mặn/đậm',
+    group: 'Bữa Chính (Món Việt phổ biến)',
+    vibe: 'Mặn/Đậm',
     tags: ['Nóng'],
-    easyWin: { text: 'Xin thêm dưa leo/đồ chua/rau + canh', tags: ['HB'] },
-    smartUpgrade: { text: 'Giảm 1/2 cơm + tăng thịt nạc/trứng + nhiều rau', tags: ['HG'], calorieReduction: 'Giảm ~ 200 - 300 kcal' },
-    planB: { text: 'Ăn theo thứ tự: canh/rau -> đạm -> cơm', tags: ['HB', 'HG'] }
+    easyWin: { text: 'Cơm xát dối/gạo lứt + Sườn cốt lết nướng (thay ba chỉ) + Trứng ốp la.', tags: ['HG', 'SB'] },
+    smartUpgrade: { text: 'Xin chủ quán gấp đôi dưa leo/đồ chua để tạo độ no giả.', tags: ['HB'] },
+    planB: { text: 'Bớt 1/2 chén cơm, nhưng tăng rau canh bù lại.', tags: ['HB', 'HG'] }
   },
   {
     id: 'f13',
     name: 'Cơm rang',
-    group: 'Cơm - món Việt',
-    vibe: 'Đậm/dễ quá tay',
+    group: 'Bữa Chính (Món Việt phổ biến)',
+    vibe: 'Đậm/Dễ quá tay',
     tags: ['Nóng'],
-    easyWin: { text: 'Thêm canh/rau luộc', tags: ['HB'] },
-    smartUpgrade: { text: 'Cơm rang "ít cơm" + thêm trứng/rau', tags: ['HG'], calorieReduction: 'Giảm ~ 250 kcal' },
-    planB: { text: 'Xin phần nhỏ - không gọi thêm topping chiên/xúc xích', tags: ['EH'] }
+    easyWin: { text: 'Mix 50% cơm trắng + 50% súp lơ trắng băm nhỏ (Cauliflower rice).', tags: ['HG'] },
+    smartUpgrade: { text: 'Rang cùng trứng, xịt dầu olive bằng spray thay chảo ngập mỡ.', tags: ['SB'] },
+    planB: { text: 'Dọn một bát canh lớn uốc xong mới bắt đầu ăn.', tags: ['EH'] }
   },
   {
     id: 'f14',
     name: 'Cơm gà',
-    group: 'Cơm - món Việt',
+    group: 'Bữa Chính (Món Việt phổ biến)',
     vibe: 'Mặn',
     tags: ['Nóng'],
-    easyWin: { text: 'Bỏ da - thêm rau', tags: ['SB', 'HG'] },
-    smartUpgrade: { text: 'Giảm 1/2 cơm + thịt gà nạc + canh xúp', tags: ['HG'], calorieReduction: 'Giảm ~ 200 - 250 kcal' },
-    planB: { text: 'Ăn gà trước rồi mới ăn cơm', tags: ['HG'] }
+    easyWin: { text: 'Đổi gà xối mỡ sang gà luộc/hấp gỏi hành tây.', tags: ['HG'] },
+    smartUpgrade: { text: 'Trộn thêm các loại đậu (Hà Lan/Lăng) vào bát cơm để làm gạo chậm.', tags: ['HG'] },
+    planB: { text: 'Lột bỏ phần da mỡ, xin nhiều rau răm, dưa leo tươi.', tags: ['SB'] }
   },
   {
     id: 'f15',
     name: 'Phở',
-    group: 'Bún/phở/mì',
-    vibe: 'Nóng/đậm',
+    group: 'Bún/Phở/Mì (Món nước)',
+    vibe: 'Nóng/Đậm',
     tags: ['Nóng'],
-    easyWin: { text: 'Xin nhiều giá/rau - ít bánh phở', tags: ['HB'] },
-    smartUpgrade: { text: 'Tăng lượng thịt nạc - giảm 1/2 bánh phở - nước trong', tags: ['HG'], calorieReduction: 'Giảm ~ 100 - 150 kcal' },
-    planB: { text: 'Ăn chậm, dừng 1 phút rồi quyết định có ăn tiếp không', tags: ['HB'] }
+    easyWin: { text: 'Báo quán: "Ít bánh phở, thật nhiều hành tây và giá trần".', tags: ['HB'] },
+    smartUpgrade: { text: 'Gọi bò bắp/lõi rùa nạc thay nạm gầu, yêu cầu nước trong (bỏ mỡ nổi).', tags: ['HG'] },
+    planB: { text: 'Chỉ húp phần nước trong, để lại một nửa lượng sợi.', tags: ['SB'] }
   },
   {
     id: 'f16',
     name: 'Bún bò',
-    group: 'Bún/phở/mì',
-    vibe: 'Nóng/đậm',
+    group: 'Bún/Phở/Mì (Món nước)',
+    vibe: 'Nóng/Đậm',
     tags: ['Nóng'],
-    easyWin: { text: 'Nhiều rau, giảm bún 1/3', tags: ['HB'] },
-    smartUpgrade: { text: 'Tăng thịt nạc - bỏ bớt giò/chả mỡ và nước béo', tags: ['HG'], calorieReduction: 'Giảm ~ 150 - 250 kcal' },
-    planB: { text: 'Gọi suất nhỏ', tags: ['EH'] }
+    easyWin: { text: 'Vớt bỏ sạch lớp sa tế dầu mỡ bên trên bề mặt.', tags: ['HB'] },
+    smartUpgrade: { text: 'Thay 1/2 lượng bún bằng hoa chuối thái rối và rau thơm xé nát.', tags: ['HG'] },
+    planB: { text: 'Đòi "bún thịt nạc", khước từ chân bò móng giò to uỳnh.', tags: ['EH'] }
   },
   {
     id: 'f17',
     name: 'Mì gói',
-    group: 'Bún/phở/mì',
-    vibe: 'Mặn/béo',
+    group: 'Bún/Phở/Mì (Món nước)',
+    vibe: 'Mặn/Béo',
     tags: ['Nóng'],
-    easyWin: { text: 'Thêm rau + trứng', tags: ['HG'] },
-    smartUpgrade: { text: 'Dùng 1/2 gói nêm - thêm nấm/rau/đậu hũ nạc', tags: ['SB', 'HG'], calorieReduction: 'Giảm Natri và Calo chất béo bão hòa' },
-    planB: { text: 'Nếu ăn khuya: ăn 1/2 phần - uống nước ấm trước', tags: ['EH'] }
+    easyWin: { text: 'Trụng bỏ nước sôi nhả mỡ lần 1 rồi mới chắt thêm nước luộc mới.', tags: ['SB'] },
+    smartUpgrade: { text: 'Đổi sợi mì chiên sang miến dong / bún nưa / bún lứt.', tags: ['HG'] },
+    planB: { text: 'Chan nước nấu với nấm, cải cúc, đập thêm quả trứng thay vì gói dầu mỡ gia vị của mì.', tags: ['SB', 'EH'] }
   },
   {
     id: 'f18',
     name: 'Bánh mì thịt',
-    group: 'Bánh mì - fast food',
-    vibe: 'Giòn/đậm',
-    tags: ['Giòn'],
-    easyWin: { text: 'Giảm pate/xốt béo - thêm dưa leo/rau', tags: ['SB'] },
-    smartUpgrade: { text: '1/2 ổ bánh mì + thêm trứng luộc/thịt nạc kẹp nhiều rau', tags: ['HG'], calorieReduction: 'Giảm ~ 150 - 200 kcal' },
-    planB: { text: 'Ăn kèm canh hoặc nước (nếu có) để nhanh no', tags: ['HB'] }
+    group: 'Bữa Chính (Tiêu chuẩn)',
+    vibe: 'Giòn/Đậm',
+    tags: ['Giòn', 'Nóng'],
+    easyWin: { text: 'Kẹp gấp đôi rau mùi, đu đủ bào sợi, rau riếp xanh dưa chuột.', tags: ['SB'] },
+    smartUpgrade: { text: 'Bánh mì đen/nguyên cám, nhân ực gà nướng móc mật hoặc xá xíu nạc.', tags: ['HG'] },
+    planB: { text: 'Móc bớt ruột phần thân bánh trước khi nhét nhân.', tags: ['HB'] }
   },
   {
     id: 'f19',
     name: 'Pizza',
-    group: 'Bánh mì - fast food',
-    vibe: 'Béo/mặn',
+    group: 'Bữa Chính (Food delivery)',
+    vibe: 'Béo/Mặn',
     tags: ['Nóng'],
-    easyWin: { text: '2 lát + gọi thêm 1 phần salad lớn', tags: ['HB'] },
-    smartUpgrade: { text: 'Chọn topping nạc/đạm - ít xốt béo', tags: ['SB', 'HG'], calorieReduction: 'Giảm ~ 200 - 300 kcal / bữa' },
-    planB: { text: 'Ăn chậm, dừng ở lát thứ 2 rồi quyết định tiếp', tags: ['HB'] }
+    easyWin: { text: 'Chọn đế mỏng (thin crust) thay đế nướng phồng dày cộm.', tags: ['SB'] },
+    smartUpgrade: { text: 'Topping nạc (gà/nấm/hải sản) thay vì pepperoni ngậm đầy mỡ ẩn.', tags: ['HG'] },
+    planB: { text: 'Ăn 1 lát, chấm dứt bằng 1 cốc Salad giấm bự chảng phía bên.', tags: ['HB'] }
   },
   {
     id: 'f20',
-    name: 'Hamburger + khoai chiên',
-    group: 'Bánh mì - fast food',
-    vibe: 'Béo/giòn',
-    tags: ['Giòn'],
-    easyWin: { text: 'Đổi khoai chiên sang salad/trái cây', tags: ['SB'] },
-    smartUpgrade: { text: 'Burger 1 miếng thịt nạc - bỏ xốt béo - thêm nhiều rau', tags: ['HG'], calorieReduction: 'Giảm ~ 300 - 400 kcal (nếu bỏ khoai)' },
-    planB: { text: 'Giữ combo nhưng chia sẻ khoai chiên cho bạn bè', tags: ['EH'] }
+    name: 'Burger + Khoai chiên',
+    group: 'Bữa Chính (Food delivery)',
+    vibe: 'Béo/Giòn',
+    tags: ['Giòn', 'Nóng'],
+    easyWin: { text: 'Nhân bò nạc, không kẹp lộn xộn bacon tẩm xốt béo.', tags: ['SB'] },
+    smartUpgrade: { text: 'Đổi khoai chiên thành Salad hoặc Khoai lang nướng nguyên vỏ thái thỏi.', tags: ['HG'] },
+    planB: { text: 'Mở hất bỏ nắp trên bánh burger (bánh mì vỏ trên), chia khoai cho người khác.', tags: ['EH'] }
   },
+
+  // Category 5: Tiệc tùng / Ăn đêm (Quản trị rủi ro cao)
   {
     id: 'f21',
     name: 'Lẩu',
-    group: 'Lẩu/nướng/tiệc',
-    vibe: 'Nóng/ăn lâu',
+    group: 'Tiệc / Ăn Đêm (Rủi ro cao)',
+    vibe: 'Nóng/Ăn lâu',
     tags: ['Nóng'],
-    easyWin: { text: 'Ăn nhiều rau/nấm và đạm nạc trước', tags: ['HB', 'HG'] },
-    smartUpgrade: { text: 'Hạn chế đồ viên công nghiệp lẩu/đồ chiên - chọn hải sản/đậu đậu', tags: ['HG'], calorieReduction: 'Giảm rất nhiều chất béo ẩn' },
-    planB: { text: '"Nguyên tắc 1 đĩa": Gắp 1 đĩa nhỏ rồi đợi 5 phút', tags: ['HB'] }
+    easyWin: { text: 'Nguyên tắc nhúng: Rau, Nấm, Đạm (Bò ức / Hải sản / Đậu) luôn lên thớt trước.', tags: ['HB', 'HG'] },
+    smartUpgrade: { text: 'Lẩu nước thanh (nấm/riêu cua) thay Tứ Xuyên. Chấm mắm ớt dầm hạt nêm thay vì sốt BBQ vừng mập béo.', tags: ['HG'] },
+    planB: { text: 'Vớt tất cả vào đúng 1 bát tô nhỏ của mình, cắm mặt chậm rãi giải quyết thay vì cứ húp ở nồi lẩu lớn.', tags: ['HB'] }
   },
   {
     id: 'f22',
-    name: 'BBQ/nướng',
-    group: 'Lẩu/nướng/tiệc',
-    vibe: 'Đậm/béo',
+    name: 'BBQ / Đồ Nướng',
+    group: 'Tiệc / Ăn Đêm (Rủi ro cao)',
+    vibe: 'Đậm/Béo',
     tags: ['Nóng'],
-    easyWin: { text: 'Ăn kèm rau sống - cuốn nhiều rau thơm', tags: ['HB'] },
-    smartUpgrade: { text: 'Chọn thịt tẩm ướp đơn giản/hải sản - hạn chế xốt phô mai ngọt', tags: ['SB', 'HG'], calorieReduction: 'Giảm ~ 200 - 300 kcal xốt' },
-    planB: { text: 'Uống nước lọc xen kẽ - tránh gọi thêm món chiên', tags: ['EH'] }
+    easyWin: { text: 'Ưu tiên hải sản (tôm, mực, hàu) hoặc bò lõi rùa gân nạc thăn.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Luôn dùng kỹ thuật cuốn: Bọc 1 miếng thịt trong lá xà lách tươi lớn + kim chi lạnh để tản mùi.', tags: ['SB', 'HG'] },
+    planB: { text: 'Kéo vạch giới hạn nướng xong lấy nước/trà lạnh giải nghén ngay.', tags: ['SB', 'EH'] }
   },
   {
     id: 'f23',
-    name: 'Thèm mì - đồ mặn lúc khuya',
-    group: 'Ăn khuya',
-    vibe: 'Nóng/đậm',
+    name: 'Thèm đồ mặn khuya (Mì / Cơm)',
+    group: 'Tiệc / Ăn Đêm (Rủi ro cao)',
+    vibe: 'Nóng/Đậm',
     tags: ['Nóng', 'Dai'],
-    easyWin: { text: 'Chỉ ăn rau/trứng/đậu - hạn chế tinh bột', tags: ['HG'] },
-    smartUpgrade: { text: 'Sữa chua không đường - một miếng trái cây ít ngọt (rất nhẹ bụng)', tags: ['EH'], calorieReduction: 'Giảm ~ 250 kcal' },
-    planB: { text: 'Nếu ăn mì: ăn 1/2 phần - không uống quá nhiều nước dùng do mặn', tags: ['SB', 'EH'] }
+    easyWin: { text: 'Trứng hấp (Chawanmushi): Dùng 2 quả trứng hấp lỏng nước - Mịn ngon ấm người mà ít calo insulin cao.', tags: ['HB', 'EH'] },
+    smartUpgrade: { text: 'Súp Miso rong biển đậu non: Trích xuất umami ngon xoa dịu thần kinh dạ dày cực khỏe vào nửa đêm.', tags: ['HG'] },
+    planB: { text: 'Chải răng hóng điều hòa làm lạnh cơ thể (Hack tín hiệu thần kinh tắt cơn thèm khát thức đói).', tags: ['SB', 'EH'] }
   },
   {
     id: 'f24',
-    name: 'Bánh quy/chocolate lúc khuya',
-    group: 'Ăn khuya',
-    vibe: 'Ngọt',
+    name: 'Thèm bánh ngọt / bim bim khuya',
+    group: 'Tiệc / Ăn Đêm (Rủi ro cao)',
+    vibe: 'Ngọt/Béo',
     tags: ['Ngọt', 'Giòn'],
-    easyWin: { text: 'Bẻ 1 phần nhỏ - cất hết hộp đi chỗ khác', tags: ['HB'] },
-    smartUpgrade: { text: 'Sữa ấm không đường', tags: ['EH'], calorieReduction: 'Giảm ~ 200 kcal' },
-    planB: { text: 'Đánh răng sớm kết hợp ly nước ấm (gửi tín hiệu kết thúc ăn uống)', tags: ['EH'] }
+    easyWin: { text: 'Táo cắt lát chấm lướt xíu bơ đậu phộng mỏng cho đã cơn ngứa răng.', tags: ['EH'] },
+    smartUpgrade: { text: '1-2 lát siêu mỏng Chocolate đen thuần cacao nguyên chất (70-80%) ngậm cho tan sệt nếm trong cuống hàm.', tags: ['HG'] },
+    planB: { text: 'Uống 1-2 ly nước ấm pha chút dấm táo nhẹ trước để xem dạ dày chỉ đang khát nước thay vì thèm ăn không?', tags: ['HB'] }
   }
 ];
 
