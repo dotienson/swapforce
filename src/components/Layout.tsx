@@ -10,9 +10,10 @@ interface LayoutProps {
   exp: number;
   rank: string;
   joinDate?: string;
+  onResetProfile?: () => void;
 }
 
-export default function Layout({ children, currentView, navigateTo, userName, exp, rank, joinDate }: LayoutProps) {
+export default function Layout({ children, currentView, navigateTo, userName, exp, rank, joinDate, onResetProfile }: LayoutProps) {
   const [showRefs, setShowRefs] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -29,13 +30,6 @@ export default function Layout({ children, currentView, navigateTo, userName, ex
           </div>
           
           <nav className="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar mx-2 sm:mx-4 py-1">
-            <button 
-              onClick={() => navigateTo('HOME')}
-              className={`p-2 lg:px-2.5 lg:py-1.5 rounded-md flex items-center justify-center text-xs font-semibold lg:text-sm transition-colors shrink-0 ${currentView === 'HOME' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
-            >
-              <span className="hidden lg:inline">Trang Chủ</span>
-              <span className="lg:hidden text-lg leading-none">🏠</span>
-            </button>
             <button 
               onClick={() => navigateTo('QUIZ')}
               className={`p-2 lg:px-2.5 lg:py-1.5 rounded-md flex items-center gap-1.5 text-xs font-semibold lg:text-sm transition-colors whitespace-nowrap shrink-0 ${currentView === 'QUIZ' || currentView === 'RESULT' ? 'bg-emerald-500/20 text-emerald-400' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
@@ -87,6 +81,17 @@ export default function Layout({ children, currentView, navigateTo, userName, ex
                   <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] font-black uppercase tracking-widest text-center text-slate-400 bg-slate-50 rounded-lg p-2">
                     {exp >= 30 ? 'Sĩ quan của Biệt kích S.W.A.P' : 'Chiến sĩ của Biệt kích S.W.A.P'}
                   </div>
+                  {onResetProfile && (
+                     <button 
+                       onClick={() => {
+                         setShowProfile(false);
+                         onResetProfile();
+                       }}
+                       className="mt-3 w-full border border-rose-200 text-rose-500 hover:bg-rose-50 font-bold text-xs py-2 rounded-lg transition-colors"
+                     >
+                       Tạo hồ sơ mới
+                     </button>
+                  )}
                 </div>
               )}
             </div>

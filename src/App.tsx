@@ -114,6 +114,21 @@ export default function App() {
     setView('RESULT');
   };
 
+  const resetProfile = () => {
+    localStorage.removeItem('swap_user_name');
+    localStorage.removeItem('swap_user_exp');
+    localStorage.removeItem('swap_user_join_date');
+    
+    // Clear all event tags
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('swap_exp_event_')) {
+        localStorage.removeItem(key);
+      }
+    }
+    window.location.reload();
+  };
+
   return (
     <>
       {isNameModalOpen && (
@@ -140,7 +155,7 @@ export default function App() {
           </div>
         </div>
       )}
-      <Layout currentView={view} navigateTo={navigateTo} userName={userName} exp={exp} rank={currentRank} joinDate={joinDate}>
+      <Layout currentView={view} navigateTo={navigateTo} userName={userName} exp={exp} rank={currentRank} joinDate={joinDate} onResetProfile={resetProfile}>
         {view === 'HOME' && <Home navigateTo={navigateTo} onWhtrCalculated={() => addExp(1, 'whtr_check')} />}
         {view === 'QUIZ' && <Quiz onComplete={handleQuizComplete} navigateTo={navigateTo} />}
         {view === 'RESULT' && <Result results={quizScore} navigateTo={navigateTo} />}
