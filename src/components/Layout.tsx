@@ -131,7 +131,9 @@ export default function Layout({ children, currentView, navigateTo, userName, ex
             S.W.A.P Force
           </div>
           <div className="border-l border-slate-200 pl-3 whitespace-nowrap truncate max-w-[150px] sm:max-w-none hidden sm:block">
-             Một lực lượng chủ lực của Biệt đội KSCN - BS. Đỗ Tiến Sơn
+             <a href="https://www.dotienson.com/" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-500 transition-colors">
+               Một lực lượng chủ lực của Biệt đội KSCN - BS. Đỗ Tiến Sơn
+             </a>
           </div>
         </div>
         <button 
