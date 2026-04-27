@@ -118,6 +118,7 @@ export default function App() {
     localStorage.removeItem('swap_user_name');
     localStorage.removeItem('swap_user_exp');
     localStorage.removeItem('swap_user_join_date');
+    localStorage.removeItem('swp_whtr_records');
     
     // Clear all event tags
     for (let i = localStorage.length - 1; i >= 0; i--) {
@@ -132,22 +133,24 @@ export default function App() {
   return (
     <>
       {isNameModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 sm:p-8 animate-in zoom-in-95">
-            <h2 className="text-2xl font-black text-slate-900 mb-2">Đăng ký Nhập ngũ</h2>
-            <p className="text-slate-500 text-sm mb-6">Xin chào tân binh! Hãy báo danh trước khi gia nhập S.W.A.P Force.</p>
+        <div className="fixed inset-0 bg-slate-900/90 z-50 flex items-center justify-center p-4 backdrop-blur-md">
+          <div className="bg-slate-900 border-2 border-emerald-500/50 rounded-2xl shadow-[0_0_40px_rgba(16,185,129,0.2)] w-full max-w-md p-6 sm:p-8 animate-in zoom-in-95 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-emerald-500"></div>
+            <div className="text-5xl sm:text-6xl mb-4 mt-2">🎖️</div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-widest mb-3">Đăng kí tham gia S.W.A.P</h2>
+            <p className="text-emerald-400 text-sm sm:text-base font-medium mb-8 px-2 leading-relaxed">Xin chào chiến hữu! Xin cho biết quý danh (nickname) trước khi gia nhập khoá đào tạo tân binh của S.W.A.P Force</p>
             <form onSubmit={handleNameSubmit} className="flex flex-col gap-4">
               <input 
                 type="text" 
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
-                placeholder="Nhập tên của bạn"
+                placeholder="NHẬP NICKNAME"
                 required
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all font-semibold"
+                className="w-full px-4 py-3 sm:py-4 rounded-xl border-2 border-slate-700 bg-slate-800 text-white text-center text-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all font-bold placeholder:text-slate-600 uppercase"
               />
               <button 
                 type="submit"
-                className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-colors"
+                className="w-full bg-emerald-500 text-slate-900 font-black text-lg py-3 sm:py-4 rounded-xl hover:bg-emerald-400 uppercase tracking-widest transition-all mt-2 active:scale-95 shadow-lg shadow-emerald-500/20"
               >
                 Ghi danh
               </button>
