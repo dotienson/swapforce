@@ -7,6 +7,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
   const [waist, setWaist] = useState('');
   const [showPhenotypeModal, setShowPhenotypeModal] = useState(false);
   const [records, setRecords] = useState<{date: string, height: number, waist: number, whtr: number}[]>([]);
+  const [isEnteringWhtr, setIsEnteringWhtr] = useState(true);
   
   useEffect(() => {
     const saved = localStorage.getItem('swp_whtr_records');
@@ -17,6 +18,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
           setRecords(parsed);
           setHeight(String(parsed[parsed.length - 1].height));
           setWaist(String(parsed[parsed.length - 1].waist));
+          setIsEnteringWhtr(false);
         }
       } catch (e) {}
     }
@@ -25,12 +27,13 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
   const heightNum = parseFloat(height);
   const waistNum = parseFloat(waist);
   const currentWhtr = (heightNum > 0 && waistNum > 0) ? (waistNum / heightNum) : null;
+  const displayWhtr = currentWhtr !== null ? currentWhtr : (records.length > 0 ? records[records.length - 1].whtr : null);
 
   useEffect(() => {
-    if ((currentWhtr !== null || records.length > 0) && onWhtrCalculated) {
+    if ((displayWhtr !== null) && onWhtrCalculated) {
       onWhtrCalculated();
     }
-  }, [currentWhtr, records, onWhtrCalculated]);
+  }, [displayWhtr, onWhtrCalculated]);
 
   const handleUpdate = () => {
     if (currentWhtr !== null) {
@@ -39,6 +42,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
       const updatedRecords = [...records, newRecord];
       setRecords(updatedRecords);
       localStorage.setItem('swp_whtr_records', JSON.stringify(updatedRecords));
+      setIsEnteringWhtr(false);
     }
   };
 
@@ -47,6 +51,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
     setWaist('');
     setRecords([]);
     localStorage.removeItem('swp_whtr_records');
+    setIsEnteringWhtr(true);
   };
 
   return (
@@ -115,44 +120,67 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
         <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">Đánh giá nguy cơ hội chứng chuyển hoá</h2>
         <p className="text-slate-500 text-[13px] sm:text-sm mb-5 sm:mb-6">Chỉ số WHtR giúp đánh giá nhanh lượng mỡ nội tạng và rủi ro sức khỏe.</p>
         
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
-          <div className="flex-1">
-            <label className="block text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5 sm:mb-2">Chiều cao (cm)</label>
-            <input 
-              type="number" 
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-              placeholder="VD: 170" 
-              className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-slate-200 bg-slate-50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-            />
-          </div>
-          <div className="flex-1">
-            <label className="block text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5 sm:mb-2">Vòng eo (đo ngang rốn) (cm)</label>
-            <input 
-              type="number" 
-              value={waist}
-              onChange={(e) => setWaist(e.target.value)}
-              placeholder="VD: 85" 
-              className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-slate-200 bg-slate-50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
-            />
-          </div>
-        </div>
+        {isEnteringWhtr ? (
+          <>
+            <div className="flex flex-col sm:flex-row gap-4 mb-4">
+              <div className="flex-1">
+                <label className="block text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5 sm:mb-2">Chiều cao (cm)</label>
+                <input 
+                  type="number" 
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                  placeholder="VD: 170" 
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-slate-200 bg-slate-50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5 sm:mb-2">Vòng eo (đo ngang rốn) (cm)</label>
+                <input 
+                  type="number" 
+                  value={waist}
+                  onChange={(e) => setWaist(e.target.value)}
+                  placeholder="VD: 85" 
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-slate-200 bg-slate-50 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none transition-all"
+                />
+              </div>
+            </div>
 
-        <div className="flex gap-3 mb-5 sm:mb-6">
-          <button 
-            onClick={handleUpdate}
-            disabled={currentWhtr === null}
-            className="flex-1 bg-slate-900 text-white font-bold py-2.5 sm:py-3 rounded-xl hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
-          >
-            Cập nhật
-          </button>
-          <button 
-            onClick={handleReset}
-            className="px-6 py-2.5 sm:py-3 bg-red-50 text-red-600 font-bold rounded-xl border border-red-100 hover:bg-red-100 transition-colors text-sm"
-          >
-            Reset
-          </button>
-        </div>
+            <div className="flex gap-3 mb-5 sm:mb-6">
+              <button 
+                onClick={handleUpdate}
+                disabled={currentWhtr === null}
+                className="flex-1 bg-slate-900 text-white font-bold py-2.5 sm:py-3 rounded-xl hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+              >
+                Lưu kết quả
+              </button>
+              <button 
+                onClick={handleReset}
+                className="px-6 py-2.5 sm:py-3 bg-red-50 text-red-600 font-bold rounded-xl border border-red-100 hover:bg-red-100 transition-colors text-sm"
+              >
+                Reset
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="flex gap-3 mb-5 sm:mb-6">
+            <button 
+              onClick={() => {
+                setHeight('');
+                setWaist('');
+                setIsEnteringWhtr(true);
+              }}
+              className="flex-1 bg-slate-900 text-white font-bold py-2.5 sm:py-3 rounded-xl hover:bg-slate-800 transition-colors text-sm"
+            >
+              Cập nhật số đo mới
+            </button>
+            <button 
+              onClick={handleReset}
+              className="px-6 py-2.5 sm:py-3 bg-red-50 text-red-600 font-bold rounded-xl border border-red-100 hover:bg-red-100 transition-colors text-sm"
+            >
+              Reset
+            </button>
+          </div>
+        )}
 
         {records.length > 0 && (
           <div className="space-y-3 mb-5 sm:mb-6">
@@ -177,9 +205,9 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
           </div>
         )}
 
-        {currentWhtr !== null && (
-          <div className={`p-4 sm:p-5 rounded-xl border ${currentWhtr > 0.5 ? 'bg-rose-50 border-rose-200 text-rose-800' : 'bg-emerald-50 border-emerald-200 text-emerald-800'}`}>
-            {currentWhtr > 0.5 ? (
+        {displayWhtr !== null && (
+          <div className={`p-4 sm:p-5 rounded-xl border ${displayWhtr > 0.5 ? 'bg-rose-50 border-rose-200 text-rose-800' : 'bg-emerald-50 border-emerald-200 text-emerald-800'}`}>
+            {displayWhtr > 0.5 ? (
               <p className="text-[13px] sm:text-sm font-semibold flex items-start gap-2">
                 <ShieldAlert className="shrink-0 mt-0.5 text-rose-500" size={16} /> 
                 Bạn có nguy cơ mắc các rối loạn chuyển hoá do dư thừa tổ chức mỡ mạn tính; bạn là ứng viên số một cho tổ biệt kích S.W.A.P của Biệt đội KSCN.
