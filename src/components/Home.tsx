@@ -24,7 +24,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
         
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 text-slate-300 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/10 mb-5 sm:mb-6">
-            <span className="font-medium">Giải pháp chiến thuật từ Biệt đội KSCN - BS Đỗ Tiến Sơn</span>
+            <span className="font-medium">Giải pháp chiến thuật của BS Đỗ Tiến Sơn</span>
           </div>
           
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6 leading-tight">
@@ -162,23 +162,23 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
 
       <div className="bg-slate-900 rounded-2xl shadow-xl border border-slate-800 p-6 sm:p-8 flex flex-col items-center sm:items-start text-center sm:text-left relative overflow-hidden">
         <div className="w-full">
-          <h3 className="text-[11px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3 sm:mb-4">S.W.A.P - Biệt kích Biến hình</h3>
+          <h3 className="text-[11px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3 sm:mb-4">S.W.A.P Method™ - Giải pháp độc quyền của BS. Đỗ Tiến Sơn</h3>
           <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3 sm:gap-y-4 text-[13px] sm:text-sm mt-2">
              <div className="flex gap-3">
                <span className="text-emerald-400 font-bold shrink-0">S</span>
-               <p className="text-slate-300"><strong>Scan</strong> (Quét & Nhận diện tình huống)</p>
+               <p className="text-slate-300"><strong>Scan</strong> (Nhận diện tình huống)</p>
              </div>
              <div className="flex gap-3">
                <span className="text-emerald-400 font-bold shrink-0">W</span>
-               <p className="text-slate-300"><strong>Weigh</strong> (Cân nhắc thiệt hơn)</p>
+               <p className="text-slate-300"><strong>Weigh</strong> (Cân nhắc thiệt - hơn)</p>
              </div>
              <div className="flex gap-3">
                <span className="text-emerald-400 font-bold shrink-0">A</span>
-               <p className="text-slate-300"><strong>Alternative</strong> (Đề xuất hoán đổi “cùng vibe”)</p>
+               <p className="text-slate-300"><strong>Alternative</strong> (Hoán đổi lựa chọn)</p>
              </div>
              <div className="flex gap-3">
                <span className="text-emerald-400 font-bold shrink-0">P</span>
-               <p className="text-slate-300"><strong>Practice</strong> (Thực hành + phản hồi + lần sau dễ hơn lần trước)</p>
+               <p className="text-slate-300"><strong>Practice</strong> (Thành thạo dần)</p>
              </div>
           </div>
         </div>
