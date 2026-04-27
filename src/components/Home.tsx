@@ -213,7 +213,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
                 <ul className="list-disc pl-5 space-y-1">
                   <li>“Mình không ăn quá nhiều mà sao vẫn tăng cân?”</li>
                   <li>“Tại sao bạn mình ăn giống mình mà nó không sao?”</li>
-                  <li>“Mình cứ thề giảm rồi lại gãy?”</li>
+                  <li>“Mình cứ thề giảm rồi lại thất bại?”</li>
                 </ul>
                 <p>Tin vui: chuyện này <span className="font-bold">không phải do bạn ‘yếu ý chí’</span>. Cơ thể và não mỗi người có “cách đói” khác nhau. Trong nghiên cứu về béo phì và quản lý cân nặng, có một khái niệm hay dùng để giải thích sự khác biệt này: <span className="font-bold">kiểu hình (phenotype)</span>.</p>
 
