@@ -6,16 +6,48 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
   const [height, setHeight] = useState('');
   const [waist, setWaist] = useState('');
   const [showPhenotypeModal, setShowPhenotypeModal] = useState(false);
+  const [records, setRecords] = useState<{date: string, height: number, waist: number, whtr: number}[]>([]);
   
+  useEffect(() => {
+    const saved = localStorage.getItem('swp_whtr_records');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setRecords(parsed);
+          setHeight(String(parsed[parsed.length - 1].height));
+          setWaist(String(parsed[parsed.length - 1].waist));
+        }
+      } catch (e) {}
+    }
+  }, []);
+
   const heightNum = parseFloat(height);
   const waistNum = parseFloat(waist);
-  const whtr = (heightNum > 0 && waistNum > 0) ? (waistNum / heightNum) : null;
+  const currentWhtr = (heightNum > 0 && waistNum > 0) ? (waistNum / heightNum) : null;
 
   useEffect(() => {
-    if (whtr !== null && onWhtrCalculated) {
+    if ((currentWhtr !== null || records.length > 0) && onWhtrCalculated) {
       onWhtrCalculated();
     }
-  }, [whtr, onWhtrCalculated]);
+  }, [currentWhtr, records, onWhtrCalculated]);
+
+  const handleUpdate = () => {
+    if (currentWhtr !== null) {
+      const today = new Date().toLocaleDateString('vi-VN');
+      const newRecord = { date: today, height: heightNum, waist: waistNum, whtr: currentWhtr };
+      const updatedRecords = [...records, newRecord];
+      setRecords(updatedRecords);
+      localStorage.setItem('swp_whtr_records', JSON.stringify(updatedRecords));
+    }
+  };
+
+  const handleReset = () => {
+    setHeight('');
+    setWaist('');
+    setRecords([]);
+    localStorage.removeItem('swp_whtr_records');
+  };
 
   return (
     <div className="flex flex-col gap-8 sm:gap-12 py-2 sm:py-4">
@@ -83,7 +115,7 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
         <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">Đánh giá nguy cơ hội chứng chuyển hoá</h2>
         <p className="text-slate-500 text-[13px] sm:text-sm mb-5 sm:mb-6">Chỉ số WHtR giúp đánh giá nhanh lượng mỡ nội tạng và rủi ro sức khỏe.</p>
         
-        <div className="flex flex-col sm:flex-row gap-4 mb-5 sm:mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="flex-1">
             <label className="block text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5 sm:mb-2">Chiều cao (cm)</label>
             <input 
@@ -106,9 +138,48 @@ export default function Home({ navigateTo, onWhtrCalculated }: { navigateTo: (v:
           </div>
         </div>
 
-        {whtr !== null && (
-          <div className={`p-4 sm:p-5 rounded-xl border ${whtr > 0.5 ? 'bg-rose-50 border-rose-200 text-rose-800' : 'bg-emerald-50 border-emerald-200 text-emerald-800'}`}>
-            {whtr > 0.5 ? (
+        <div className="flex gap-3 mb-5 sm:mb-6">
+          <button 
+            onClick={handleUpdate}
+            disabled={currentWhtr === null}
+            className="flex-1 bg-slate-900 text-white font-bold py-2.5 sm:py-3 rounded-xl hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+          >
+            Cập nhật
+          </button>
+          <button 
+            onClick={handleReset}
+            className="px-6 py-2.5 sm:py-3 bg-red-50 text-red-600 font-bold rounded-xl border border-red-100 hover:bg-red-100 transition-colors text-sm"
+          >
+            Reset
+          </button>
+        </div>
+
+        {records.length > 0 && (
+          <div className="space-y-3 mb-5 sm:mb-6">
+            {records.map((r, i) => (
+              <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg border border-slate-100 bg-slate-50 gap-2">
+                <span className="text-sm font-medium text-slate-700">Chỉ số WHtR ngày <span className="font-bold">{r.date}</span> = <span className="font-bold">{r.whtr.toFixed(2)}</span></span>
+                <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+                  {r.whtr > 0.5 ? (
+                    <span className="text-[10px] sm:text-xs font-bold bg-rose-100 text-rose-700 px-2.5 py-1 rounded-full whitespace-nowrap uppercase tracking-wider">Cảnh báo</span>
+                  ) : (
+                    <span className="text-[10px] sm:text-xs font-bold bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full whitespace-nowrap uppercase tracking-wider">Bình thường</span>
+                  )}
+                  {i > 0 && r.whtr < records[i - 1].whtr && (
+                    <span className="text-[10px] sm:text-xs font-bold bg-yellow-100 text-yellow-700 px-2.5 py-1 rounded-full whitespace-nowrap uppercase tracking-wider">Cải thiện tốt</span>
+                  )}
+                  {i > 0 && r.whtr > records[i - 1].whtr && (
+                    <span className="text-[10px] sm:text-xs font-bold bg-orange-100 text-orange-700 px-2.5 py-1 rounded-full whitespace-nowrap uppercase tracking-wider">Xu hướng tăng</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {currentWhtr !== null && (
+          <div className={`p-4 sm:p-5 rounded-xl border ${currentWhtr > 0.5 ? 'bg-rose-50 border-rose-200 text-rose-800' : 'bg-emerald-50 border-emerald-200 text-emerald-800'}`}>
+            {currentWhtr > 0.5 ? (
               <p className="text-[13px] sm:text-sm font-semibold flex items-start gap-2">
                 <ShieldAlert className="shrink-0 mt-0.5 text-rose-500" size={16} /> 
                 Bạn có nguy cơ mắc các rối loạn chuyển hoá do dư thừa tổ chức mỡ mạn tính; bạn là ứng viên số một cho tổ biệt kích S.W.A.P của Biệt đội KSCN.
